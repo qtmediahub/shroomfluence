@@ -39,7 +39,7 @@
 ****************************************************************************/
 
 //! [1]
-import QtQuick 1.1
+import QtQuick 2.0
 import Qt3D 1.0
 import QtMediaHub.components.media 1.0
 
