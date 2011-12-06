@@ -18,11 +18,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 ****************************************************************************/
 
 import QtQuick 2.0
+import QtMediaHub.components.media 2.0
 import "components/"
 import RpcConnection 1.0
 import "./components/uiconstants.js" as UIConstants
 import MediaModel 1.0
-import QtMediaHub.components.media 1.0
 import Playlist 1.0
 import AbstractMediaPlayer 1.0
 
@@ -179,14 +179,6 @@ QMHPlayer {
         color: "black"
         visible: !runtime.settings.overlayMode && avPlayer.hasVideo
         z: -1
-    }
-
-    ParticleVisualization {
-        id: audioVisualisationPlaceholder
-        anchors.fill: parent
-        //Removing particles until backends report video content correctly
-        visible: !root.hasVideo && !runtime.settings.overlayMode
-        running: visible && root.playing
     }
 
     AVPlayerControlOSD {
