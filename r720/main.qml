@@ -22,7 +22,9 @@ import QtQuick 2.0
 Item {
     id: confluenceEntry
 
-    anchors.fill: parent
+    width: 1280; height: 720
+    //This fails in Qt5 at present!
+    //anchors.fill: parent
 
     Connections {
         target: runtime.window
