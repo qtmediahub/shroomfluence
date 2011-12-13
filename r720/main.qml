@@ -66,11 +66,7 @@ Item {
 
     Component.onCompleted: {
         if (runtime.skin.settings.splash) {
-            if (runtime.skin.settings.shroom) {
-                splashLoader.source = "ShaderSplashScreen.qml"
-            } else {
-                splashLoader.source = "SplashScreen.qml"
-            }
+            splashLoader.source = "ShaderSplashScreen.qml"
         } else {
             confluenceEntry.load()
         }

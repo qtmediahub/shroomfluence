@@ -1,7 +1,6 @@
 import QtQuick 2.0
 
-import Qt.labs.shaders 1.0
-import Qt.labs.shaders.effects 1.0
+import Qt.labs.shaders.effects 2.0
 
 Item {
     id: root

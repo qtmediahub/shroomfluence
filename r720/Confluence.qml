@@ -28,7 +28,6 @@ import MediaModel 1.0
 FocusScope {
     id: confluence
 
-    property bool shroomfluence: runtime.skin.settings.shroom
     property bool scalingAllowed: runtime.skin.settings.pixmapScaling
     property real scalingCorrection: confluence.width == 1280 ? 1.0 : confluence.width/1280
 
