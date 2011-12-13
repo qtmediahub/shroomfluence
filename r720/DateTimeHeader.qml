@@ -29,20 +29,6 @@ Header {
     }
 
     ConfluenceText {
-        id: shadowText
-
-        property string plainCurrentTime: Qt.formatDateTime(root.now, "hh:mm:ss AP")
-        property string plainCurrentDateTime: Qt.formatDateTime(root.now, "dddd, MMMM dd, yyyy") + " | " + plainCurrentTime
-
-        x: root.showDate ? 41 : 21;
-        y: 1
-        color: "white"
-        text: showDate ? plainCurrentDateTime : plainCurrentTime
-        anchors.verticalCenter: parent.verticalCenter
-        animated: false
-    }
-
-    ConfluenceText {
         id: dateTimeText
         x: root.showDate ? 40 : 20
         text: showDate ? currentDateTime() : currentTime()
