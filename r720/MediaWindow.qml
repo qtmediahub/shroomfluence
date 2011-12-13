@@ -99,7 +99,7 @@ Window {
     }
     onItemActivated: {
         confluence.shroomfluence ? mediaWindowRipple.ripple(mediaItem) : undefined
-        root.play()
+        mediaWindow.play()
     }
 
     function visibleTransitionFinished() {
@@ -125,7 +125,7 @@ Window {
         property alias viewAction: viewAction
         property alias groupByAction: groupByAction
 
-        parent: root
+        parent: mediaWindow
         visible: true
         defaultBladeActionIndex: 1
 
@@ -231,7 +231,6 @@ Window {
     Component.onCompleted: {
         setCurrentView(mediaWindow.viewType)
         setGroupBy(mediaWindow.groupBy)
-        if (confluence.shroomfluence)
-            mediaWindowRipple = confluence.createQmlObjectFromFile("MediaWindowRipple.qml", {}, root)
+        mediaWindowRipple = confluence.createQmlObjectFromFile("MediaWindowRipple.qml", {}, mediaWindow)
     }
 }

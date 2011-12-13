@@ -1,7 +1,6 @@
 import QtQuick 2.0
 
-import Qt.labs.shaders 1.0
-import Qt.labs.shaders.effects 1.0
+import Qt.labs.shaders.effects 2.0
 
 Item {
     property variant sourceSurface: parent
@@ -11,12 +10,13 @@ Item {
         var scenePos = confluence.mapFromItem(mediaItem.parent, mediaItem.x + mediaItem.width/2, mediaItem.y + mediaItem.height/2)
         waveLayer.waveOriginX = scenePos.x/sourceSurface.width
         waveLayer.waveOriginY = scenePos.y/sourceSurface.height
-        waveLayer.visible = true
+        //waveLayer.visible = true
         waveAnim.start()
     }
 
     function stop() {
-        waveLayer.visible = false
+        waveAnim.stop()
+        //waveLayer.visible = false
     }
 
     ShaderEffectSource {
@@ -28,7 +28,7 @@ Item {
 
     RadialWaveEffect {
         id: waveLayer
-        visible: false
+        //visible: false
         width: sourceSurface.width; height: sourceSurface.height
         source: viewSource
 
@@ -39,7 +39,7 @@ Item {
 
         NumberAnimation on wave {
             id: waveAnim
-            running: waveLayer.visible
+            //running: waveLayer.visible
             easing.type: "InQuad"
             from: 0.0000; to: 1.0000;
             duration: 2500
