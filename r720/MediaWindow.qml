@@ -231,6 +231,6 @@ Window {
     Component.onCompleted: {
         setCurrentView(mediaWindow.viewType)
         setGroupBy(mediaWindow.groupBy)
-        mediaWindowRipple = confluence.createQmlObjectFromFile("MediaWindowRipple.qml", {}, mediaWindow)
+        //mediaWindowRipple = confluence.createQmlObjectFromFile("MediaWindowRipple.qml", {}, mediaWindow)
     }
 }
