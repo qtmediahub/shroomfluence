@@ -24,6 +24,7 @@ import "./components/cursor.js" as Cursor
 import "util.js" as Util
 import "confluence.js" as Confluence
 import MediaModel 1.0
+import IpAddressFinder 1.0
 
 FocusScope {
     id: confluence
@@ -441,6 +442,17 @@ FocusScope {
 
     FPSItem {
         visible: runtime.skin.settings.showFPS
+    }
+
+    Text {
+        z: 100000
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        text: ipAddressFinder.ipAddresses[0]
+
+        IpAddressFinder {
+            id: ipAddressFinder
+        }
     }
 }
 
