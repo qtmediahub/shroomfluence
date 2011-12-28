@@ -31,7 +31,6 @@ Window {
     property alias view : viewLoader.item
     property string viewType : "POSTER"
     property string groupBy : "None"
-    property variant mediaWindowRipple
     property Item informationSheet
 
     property variant groupByOptions : [qsTr("None")]
@@ -94,13 +93,8 @@ Window {
         mediaModel.structure = structures[index]
     }
 
-    onItemSelected: {
-        mediaWindowRipple.stop()
-    }
-    onItemActivated: {
-        mediaWindowRipple.ripple(mediaItem)
+    onItemActivated:
         mediaWindow.play()
-    }
 
     function visibleTransitionFinished() {
         if (mediaModel.rowCount() < 1) 
@@ -231,6 +225,5 @@ Window {
     Component.onCompleted: {
         setCurrentView(mediaWindow.viewType)
         setGroupBy(mediaWindow.groupBy)
-        //mediaWindowRipple = confluence.createQmlObjectFromFile("MediaWindowRipple.qml", {}, mediaWindow)
     }
 }
