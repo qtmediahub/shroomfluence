@@ -25,7 +25,7 @@ Item {
     width: GridView.view.cellWidth
     height: GridView.view.cellHeight
 
-    GridView.onAdd: if (confluence.shroomfluence) delegateItemAnim.restart()
+    GridView.onAdd: delegateItemAnim.restart()
 
     NumberAnimation {
         id: delegateItemAnim

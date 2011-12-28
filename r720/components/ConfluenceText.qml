@@ -22,7 +22,7 @@ import QtQuick 2.0
 Text {
     id: root
 
-    property bool animated: confluence.shroomfluence
+    property bool animated: true
 
     color: "white"
     //Disable on transitions

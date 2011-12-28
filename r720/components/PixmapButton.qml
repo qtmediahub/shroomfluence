@@ -46,7 +46,7 @@ Item {
     onReleased: d.depressed = false
     onFocusChanged: d.depressed = false
 
-    onActiveFocusChanged: if (confluence.shroomfluence && root.activeFocus) enterAnim.restart()
+    onActiveFocusChanged: if (root.activeFocus) enterAnim.restart()
 
     Keys.onEnterPressed: root.clicked()
 

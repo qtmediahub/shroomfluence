@@ -95,10 +95,10 @@ Window {
     }
 
     onItemSelected: {
-        confluence.shroomfluence ? mediaWindowRipple.stop() : undefined
+        mediaWindowRipple.stop()
     }
     onItemActivated: {
-        confluence.shroomfluence ? mediaWindowRipple.ripple(mediaItem) : undefined
+        mediaWindowRipple.ripple(mediaItem)
         mediaWindow.play()
     }
 
