@@ -329,6 +329,11 @@ FocusScope {
         visible: !avPlayer.playing
     }
 
+    PoorManAudioVisualization {
+        z: -3
+        visible: avPlayer.playing && !avPlayer.hasVideo
+    }
+
     MainBlade {
         id: mainBlade;
         state: "open"
