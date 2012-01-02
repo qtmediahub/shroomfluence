@@ -94,7 +94,7 @@ FocusScope {
                 var panel = createQmlObjectFromFile("components/Panel.qml", {decorateFrame: true, decorateTitleBar: true}, engine.window)
                 panel.anchors.centerIn = engine.window
                 var app = createQmlObjectFromFile(engine.appUrl, {})
-                var item = Qt.createQmlObject("import QtQuick 1.0; Item { }", panel.contentItem)
+                var item = Qt.createQmlObject("import QtQuick 2.0; Item { }", panel.contentItem)
                 item.width = (function() { return engine.window ? engine.window.width - 60 : undefined })
                 item.height = (function() { return engine.window ? engine.window.height - 60 : undefined })
                 app.parent = item
