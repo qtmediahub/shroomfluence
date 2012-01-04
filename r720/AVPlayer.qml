@@ -61,10 +61,6 @@ QMHPlayer {
         confluence.show(root)
     }
 
-    onPositionChanged: {
-        audioVisualisationPlaceholder.metronomTick()
-    }
-
     onStatusChanged: {
         if (d.queuedShow && root.status == AbstractMediaPlayer.Buffered) {
             handlePendingShow()
