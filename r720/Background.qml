@@ -24,13 +24,32 @@ Item {
     id: root
     z: UIConstants.screenZValues.background
 
+    property string latentBackgroundPath
     property string backgroundPath: themeResourcePath + "/backgrounds/720p/"
 
     ListModel {
         id: imagesModel
     }
 
+    Connections {
+        target: audioVisualisationPlaceholder
+        onVisibleChanged:
+            if (audioVisualisationPlaceholder.visible)
+            {
+                setBackground(latentBackgroundPath)
+                latentBackgroundPath = ""
+            }
+    }
+
     function setBackground(source) {
+        if (source == "")
+            return
+
+        if (audioVisualisationPlaceholder.visible) {
+            latentBackgroundPath = source
+            return
+        }
+
         var index = -1;
 
         for (var i = 0; i < imagesModel.count; ++i) {

@@ -330,6 +330,7 @@ FocusScope {
     }
 
     PoorManAudioVisualization {
+        id: audioVisualisationPlaceholder
         z: -3
         visible: avPlayer.playing && !avPlayer.hasVideo
     }
