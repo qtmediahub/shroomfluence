@@ -45,7 +45,6 @@ FocusScope {
     property variant rootMenuModel: ListModel { }
 
     // private
-    property variant _browserWindow
     property variant _ticker
     property variant _weatherWindow
     property int _openWindowIndex : 0
@@ -61,12 +60,7 @@ FocusScope {
     }
 
     function openLink(link) {
-        if (_browserWindow) {
-            _browserWindow.loadPage(link)
-            confluence.show(_browserWindow)
-        } else {
             console.log('No browser present to open ' + link)
-        }
     }
 
     function showAboutWindow() {
@@ -264,15 +258,12 @@ FocusScope {
     Component.onCompleted: {
         Cursor.initialize()
 
-        _browserWindow = createQmlObjectFromFile("WebWindow.qml")
         _weatherWindow = createQmlObjectFromFile("WeatherWindow.qml")
 
         var rootMenuItems = [
             { name: qsTr("Music"), mediaPlugin: "music", sourceUrl: "MusicWindow.qml", background: "music.jpg",  constructorArgs: { deleteOnClose: false } },
             { name: qsTr("Picture"), mediaPlugin: "picture", sourceUrl: "PictureWindow.qml", background: "pictures.jpg", constructorArgs: { deleteOnClose: false } },
             { name: qsTr("Video"), mediaPlugin: "video", sourceUrl: "VideoWindow.qml", background: "videos.jpg", constructorArgs: { deleteOnClose: false } },
-            { name: qsTr("Radio"), mediaPlugin: "radio", sourceUrl: "RadioWindow.qml", background: "music.jpg", constructorArgs: { deleteOnClose: true } },
-            { name: qsTr("Snes"), mediaPlugin: "snes", sourceUrl: "SnesWindow.qml", background: "snes.jpg", constructorArgs: { deleteOnClose: true } },
             { name: qsTr("Weather"), sourceUrl: "WeatherWindow.qml", window: _weatherWindow, background: "weather.jpg" }
         ]
 
@@ -285,18 +276,9 @@ FocusScope {
                 rootMenuItems.push({ name: manifest.name, appUrl: path + manifest.ui, background: path + manifest.background,
                                    constructorArgs: { deleteOnClose: true }})
                 runtime.view.addImportPath(path + "imports")
-            } else if (uiType == "html") {
-                var url = path + manifest.ui 
-                rootMenuItems.push({ name: manifest.name, window: _browserWindow, background: path + manifest.background,
-                                     onActivate: function() { this.initialUrl = url } })
             } else {
                 console.log('Application ' + manifest.name + ' at ' + path + ' with ui:' + manifest.ui + ' could not be loaded.')
             }
-        }
-
-        if (runtime.skin.settings.webkitPlugins) {
-            rootMenuItems.push({ name: qsTr("youtube"), window: _browserWindow,
-                                 onActivate: function() { this.initialUrl = "http://www.youtube.com/xl" } })
         }
 
         _addRootMenuItems(rootMenuItems)
