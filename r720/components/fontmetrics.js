@@ -23,7 +23,7 @@ function calcTextWidth(text, pixelSize, parent)
         return 0;
 
     var textElement = Qt.createQmlObject(
-            'import Qt 4.7;'
+            'import QtQuick 2.0;'
             + 'Text {'
             + '   font.pixelSize: ' + parseInt(pixelSize) + ';'
             + '   text: "' + text + '" '
@@ -41,7 +41,7 @@ function calcTextHeight(text, pixelSize, parent)
         return 0;
 
     var textElement = Qt.createQmlObject(
-            'import Qt 4.7;'
+            'import QtQuick 2.0;'
             + 'Text {'
             + '   font.pixelSize: ' + parseInt(pixelSize) + ';'
             + '   text: "' + text + '" '
