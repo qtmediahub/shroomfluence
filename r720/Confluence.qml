@@ -66,12 +66,12 @@ FocusScope {
     }
 
     function showAboutWindow() {
-        var aboutWindow = util.createQmlObjectFromFile("AboutWindow.qml", { deleteOnClose: true })
+        var aboutWindow = util.createQmlObjectFromFile(themePath + "AboutWindow.qml", { deleteOnClose: true })
         show(aboutWindow)
     }
 
     function showSystemInfoWindow() {
-        var systemInfoWindow = util.createQmlObjectFromFile("SystemInfoWindow.qml", { deleteOnClose: true })
+        var systemInfoWindow = util.createQmlObjectFromFile(themePath + "SystemInfoWindow.qml", { deleteOnClose: true })
         show(systemInfoWindow)
     }
 
@@ -86,8 +86,8 @@ FocusScope {
             if (engine.sourceUrl) {
                 engine.window = util.createQmlObjectFromFile(engine.sourceUrl, engine.constructorArgs || {}) || { }
             } else if (engine.appUrl) {
-                engine.window = util.createQmlObjectFromFile("components/Window.qml", engine.constructorArgs || {})
-                var panel = util.createQmlObjectFromFile("components/Panel.qml", {decorateFrame: true, decorateTitleBar: true}, engine.window)
+                engine.window = util.createQmlObjectFromFile(themePath + "components/Window.qml", engine.constructorArgs || {})
+                var panel = util.createQmlObjectFromFile(themePath + "components/Panel.qml", {decorateFrame: true, decorateTitleBar: true}, engine.window)
                 panel.anchors.centerIn = engine.window
                 var app = util.createQmlObjectFromFile(engine.appUrl, {})
                 var item = Qt.createQmlObject("import QtQuick 2.0; Item { }", panel.contentItem)
