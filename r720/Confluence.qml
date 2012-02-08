@@ -33,6 +33,7 @@ FocusScope {
     property bool scalingAllowed: runtime.skin.settings.pixmapScaling
     property real scalingCorrection: confluence.width == 1280 ? 1.0 : confluence.width/1280
 
+    property string themePath: util.pathFromUrl(runtime.view.source)
     property string themeResourcePath: runtime.skin.path + "/3rdparty/skin.confluence/"
 
     property int standardEasingCurve: Easing.InQuad
@@ -250,13 +251,13 @@ FocusScope {
     Component.onCompleted: {
         Cursor.initialize()
 
-        _weatherWindow = util.createQmlObjectFromFile("WeatherWindow.qml")
+        _weatherWindow = util.createQmlObjectFromFile(themePath + "WeatherWindow.qml")
 
         var rootMenuItems = [
-            { name: qsTr("Music"), mediaPlugin: "music", sourceUrl: "MusicWindow.qml", background: "music.jpg",  constructorArgs: { deleteOnClose: false } },
-            { name: qsTr("Picture"), mediaPlugin: "picture", sourceUrl: "PictureWindow.qml", background: "pictures.jpg", constructorArgs: { deleteOnClose: false } },
-            { name: qsTr("Video"), mediaPlugin: "video", sourceUrl: "VideoWindow.qml", background: "videos.jpg", constructorArgs: { deleteOnClose: false } },
-            { name: qsTr("Weather"), sourceUrl: "WeatherWindow.qml", window: _weatherWindow, background: "weather.jpg" }
+            { name: qsTr("Music"), mediaPlugin: "music", sourceUrl: themePath + "MusicWindow.qml", background: "music.jpg",  constructorArgs: { deleteOnClose: false } },
+            { name: qsTr("Picture"), mediaPlugin: "picture", sourceUrl: themePath + "PictureWindow.qml", background: "pictures.jpg", constructorArgs: { deleteOnClose: false } },
+            { name: qsTr("Video"), mediaPlugin: "video", sourceUrl: themePath + "VideoWindow.qml", background: "videos.jpg", constructorArgs: { deleteOnClose: false } },
+            { name: qsTr("Weather"), sourceUrl: themePath + "WeatherWindow.qml", window: _weatherWindow, background: "weather.jpg" }
         ]
 
         var apps = runtime.apps.findApplications()
@@ -277,15 +278,15 @@ FocusScope {
 
         _addRootMenuItems(rootMenuItems)
 
-        _ticker = util.createQmlObjectFromFile("Ticker.qml", { z: UIConstants.screenZValues.header, state: "visible" })
+        _ticker = util.createQmlObjectFromFile(themePath + "Ticker.qml", { z: UIConstants.screenZValues.header, state: "visible" })
         if (_ticker) {
             _ticker.linkClicked.connect(confluence.openLink)
         } else {
             _ticker = dummyItem
         }
 
-        util.createQmlObjectFromFile("ScreenSaver.qml")
-        util.createQmlObjectFromFile("SystemScreenSaverControl.qml")
+        util.createQmlObjectFromFile(themePath + "ScreenSaver.qml")
+        util.createQmlObjectFromFile(themePath + "SystemScreenSaverControl.qml")
     }
 
     AVPlayer {
