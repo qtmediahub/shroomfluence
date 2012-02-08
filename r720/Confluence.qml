@@ -66,12 +66,12 @@ FocusScope {
     }
 
     function showAboutWindow() {
-        var aboutWindow = util.createQmlObjectFromFile(themePath + "AboutWindow.qml", { deleteOnClose: true })
+        var aboutWindow = util.createQmlObjectFromFile(themePath + "AboutWindow.qml", { deleteOnClose: true }, confluence)
         show(aboutWindow)
     }
 
     function showSystemInfoWindow() {
-        var systemInfoWindow = util.createQmlObjectFromFile(themePath + "SystemInfoWindow.qml", { deleteOnClose: true })
+        var systemInfoWindow = util.createQmlObjectFromFile(themePath + "SystemInfoWindow.qml", { deleteOnClose: true }, confluence)
         show(systemInfoWindow)
     }
 
@@ -84,12 +84,12 @@ FocusScope {
 
         if (!engine.window) {
             if (engine.sourceUrl) {
-                engine.window = util.createQmlObjectFromFile(engine.sourceUrl, engine.constructorArgs || {}) || { }
+                engine.window = util.createQmlObjectFromFile(engine.sourceUrl, engine.constructorArgs || {}, confluence) || { }
             } else if (engine.appUrl) {
-                engine.window = util.createQmlObjectFromFile(themePath + "components/Window.qml", engine.constructorArgs || {})
-                var panel = util.createQmlObjectFromFile(themePath + "components/Panel.qml", {decorateFrame: true, decorateTitleBar: true}, engine.window)
+                engine.window = util.createQmlObjectFromFile(themePath + "components/Window.qml", engine.constructorArgs || {}, confluence)
+                var panel = util.createQmlObjectFromFile(themePath + "components/Panel.qml", {decorateFrame: true, decorateTitleBar: true}, engine.window, confluence)
                 panel.anchors.centerIn = engine.window
-                var app = util.createQmlObjectFromFile(engine.appUrl, {})
+                var app = util.createQmlObjectFromFile(engine.appUrl, {}, confluence)
                 var item = Qt.createQmlObject("import QtQuick 2.0; Item { }", panel.contentItem)
                 item.width = (function() { return engine.window ? engine.window.width - 60 : undefined })
                 item.height = (function() { return engine.window ? engine.window.height - 60 : undefined })
@@ -251,7 +251,7 @@ FocusScope {
     Component.onCompleted: {
         Cursor.initialize()
 
-        _weatherWindow = util.createQmlObjectFromFile(themePath + "WeatherWindow.qml")
+        _weatherWindow = util.createQmlObjectFromFile(themePath + "WeatherWindow.qml", {}, confluence)
 
         var rootMenuItems = [
             { name: qsTr("Music"), mediaPlugin: "music", sourceUrl: themePath + "MusicWindow.qml", background: "music.jpg",  constructorArgs: { deleteOnClose: false } },
@@ -263,7 +263,7 @@ FocusScope {
         var apps = runtime.apps.findApplications()
         for (var idx in apps) {
             var path = apps[idx]
-            var manifest = util.createQmlObjectFromFile(path + "qmhmanifest.qml")
+            var manifest = util.createQmlObjectFromFile(path + "qmhmanifest.qml", {}, confluence)
             if (manifest == null)
                 continue;
             var uiType = manifest.ui.substring(manifest.ui.lastIndexOf('.')+1)
@@ -278,15 +278,15 @@ FocusScope {
 
         _addRootMenuItems(rootMenuItems)
 
-        _ticker = util.createQmlObjectFromFile(themePath + "Ticker.qml", { z: UIConstants.screenZValues.header, state: "visible" })
+        _ticker = util.createQmlObjectFromFile(themePath + "Ticker.qml", { z: UIConstants.screenZValues.header, state: "visible" }, confluence)
         if (_ticker) {
             _ticker.linkClicked.connect(confluence.openLink)
         } else {
             _ticker = dummyItem
         }
 
-        util.createQmlObjectFromFile(themePath + "ScreenSaver.qml")
-        util.createQmlObjectFromFile(themePath + "SystemScreenSaverControl.qml")
+        util.createQmlObjectFromFile(themePath + "ScreenSaver.qml", {}, confluence)
+        util.createQmlObjectFromFile(themePath + "SystemScreenSaverControl.qml", {}. confluence)
     }
 
     AVPlayer {
