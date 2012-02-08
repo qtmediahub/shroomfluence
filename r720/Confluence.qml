@@ -25,6 +25,7 @@ import "util.js" as Util
 import "confluence.js" as Confluence
 import MediaModel 1.0
 import IpAddressFinder 1.0
+import QtMediaHub.components 2.0
 
 FocusScope {
     id: confluence
@@ -64,12 +65,12 @@ FocusScope {
     }
 
     function showAboutWindow() {
-        var aboutWindow = createQmlObjectFromFile("AboutWindow.qml", { deleteOnClose: true })
+        var aboutWindow = util.createQmlObjectFromFile("AboutWindow.qml", { deleteOnClose: true })
         show(aboutWindow)
     }
 
     function showSystemInfoWindow() {
-        var systemInfoWindow = createQmlObjectFromFile("SystemInfoWindow.qml", { deleteOnClose: true })
+        var systemInfoWindow = util.createQmlObjectFromFile("SystemInfoWindow.qml", { deleteOnClose: true })
         show(systemInfoWindow)
     }
 
@@ -82,12 +83,12 @@ FocusScope {
 
         if (!engine.window) {
             if (engine.sourceUrl) {
-                engine.window = createQmlObjectFromFile(engine.sourceUrl, engine.constructorArgs || {}) || { }
+                engine.window = util.createQmlObjectFromFile(engine.sourceUrl, engine.constructorArgs || {}) || { }
             } else if (engine.appUrl) {
-                engine.window = createQmlObjectFromFile("components/Window.qml", engine.constructorArgs || {})
-                var panel = createQmlObjectFromFile("components/Panel.qml", {decorateFrame: true, decorateTitleBar: true}, engine.window)
+                engine.window = util.createQmlObjectFromFile("components/Window.qml", engine.constructorArgs || {})
+                var panel = util.createQmlObjectFromFile("components/Panel.qml", {decorateFrame: true, decorateTitleBar: true}, engine.window)
                 panel.anchors.centerIn = engine.window
-                var app = createQmlObjectFromFile(engine.appUrl, {})
+                var app = util.createQmlObjectFromFile(engine.appUrl, {})
                 var item = Qt.createQmlObject("import QtQuick 2.0; Item { }", panel.contentItem)
                 item.width = (function() { return engine.window ? engine.window.width - 60 : undefined })
                 item.height = (function() { return engine.window ? engine.window.height - 60 : undefined })
@@ -234,15 +235,6 @@ FocusScope {
     Keys.onVolumeDownPressed: avPlayer.decreaseVolume()
     Keys.onVolumeUpPressed: avPlayer.increaseVolume()
 
-    function createQmlObjectFromFile(file, properties, parent) {
-        var qmlComponent = Qt.createComponent(file)
-        if (qmlComponent.status == Component.Ready) {
-            return qmlComponent.createObject(parent ? parent : confluence, properties ? properties : {})
-        }
-        console.log(qmlComponent.errorString())
-        return null
-    }
-
     function _addRootMenuItems(rootMenuItems) {
         var mediaPlugins = runtime.mediaScanner.availableParserPlugins()
         for (var i = 0; i < rootMenuItems.length; i++) {
@@ -258,7 +250,7 @@ FocusScope {
     Component.onCompleted: {
         Cursor.initialize()
 
-        _weatherWindow = createQmlObjectFromFile("WeatherWindow.qml")
+        _weatherWindow = util.createQmlObjectFromFile("WeatherWindow.qml")
 
         var rootMenuItems = [
             { name: qsTr("Music"), mediaPlugin: "music", sourceUrl: "MusicWindow.qml", background: "music.jpg",  constructorArgs: { deleteOnClose: false } },
@@ -270,7 +262,9 @@ FocusScope {
         var apps = runtime.apps.findApplications()
         for (var idx in apps) {
             var path = apps[idx]
-            var manifest = createQmlObjectFromFile(path + "qmhmanifest.qml")
+            var manifest = util.createQmlObjectFromFile(path + "qmhmanifest.qml")
+            if (manifest == null)
+                continue;
             var uiType = manifest.ui.substring(manifest.ui.lastIndexOf('.')+1)
             if (uiType == "qml") {
                 rootMenuItems.push({ name: manifest.name, appUrl: path + manifest.ui, background: path + manifest.background,
@@ -283,20 +277,24 @@ FocusScope {
 
         _addRootMenuItems(rootMenuItems)
 
-        _ticker = createQmlObjectFromFile("Ticker.qml", { z: UIConstants.screenZValues.header, state: "visible" })
+        _ticker = util.createQmlObjectFromFile("Ticker.qml", { z: UIConstants.screenZValues.header, state: "visible" })
         if (_ticker) {
             _ticker.linkClicked.connect(confluence.openLink)
         } else {
             _ticker = dummyItem
         }
 
-        createQmlObjectFromFile("ScreenSaver.qml")
-        createQmlObjectFromFile("SystemScreenSaverControl.qml")
+        util.createQmlObjectFromFile("ScreenSaver.qml")
+        util.createQmlObjectFromFile("SystemScreenSaverControl.qml")
     }
 
     AVPlayer {
         id: avPlayer
         state: "background"
+    }
+
+    QMHUtil {
+        id: util
     }
 
     // dummyItem useful to avoid error ouput on component loader failures
