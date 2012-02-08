@@ -178,7 +178,7 @@ FocusScope {
             PropertyChanges { target: mainBlade; state: "hidden" }
             PropertyChanges { target: avPlayer; state: "hidden" }
             PropertyChanges { target: dateTimeHeader; expanded: true; showDate: false }
-//            PropertyChanges { target: weatherHeader; expanded: false }
+            PropertyChanges { target: weatherHeader; expanded: false }
             PropertyChanges { target: homeHeader; expanded: true }
             PropertyChanges { target: currentContextHeader; expanded: true }
             PropertyChanges { target: _ticker; state: "" }
@@ -352,17 +352,17 @@ FocusScope {
         }
     }
 
-//    WeatherHeader {
-//        id: weatherHeader
+    WeatherHeader {
+        id: weatherHeader
 
-//        width: content.width + dateTimeHeader.width + 50
-//        city: runtime.skin.settings.weatherCity
+        width: content.width + dateTimeHeader.width + 50
+        city: runtime.skin.settings.weatherCity
 
-//        MouseArea {
-//            anchors.fill: parent
-//            onClicked: confluence.show(_weatherWindow)
-//        }
-//    }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: confluence.show(_weatherWindow)
+        }
+    }
 
     DateTimeHeader {
         id: dateTimeHeader
