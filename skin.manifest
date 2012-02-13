@@ -1,5 +1,5 @@
 {
-    "name": "Confluence",
+    "name": "Shroomfluence",
     "version": "0.8",
 
     "resolutions": {
@@ -12,15 +12,12 @@
 
     "screenshot": "screenshot.png",
 
-    "website": "http://www.qtmediahub.com/trac/Skins/Confluence",
-
     "authors": [
         { "name": "Girish Ramakrishnan", "email": "girish@forwardbias.in" },
         { "name": "Donald Carr", "email": "sirspudd@gmail.com" }
     ],
 
     "settings": [
-        { "name": "shroom",         "default_value": "false",           "doc": "toggle shroomfluence" },
         { "name": "volume",         "default_value": "0.5",             "doc": "volume to be restored and saved" },
         { "name": "osdTimeout",     "default_value": "3000",            "doc": "osd timeout in ms" },
         { "name": "showFPS",        "default_value": "false",           "doc": "toggle FPS counter" },

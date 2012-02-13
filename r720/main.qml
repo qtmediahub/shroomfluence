@@ -36,7 +36,7 @@ Item {
     }
 
     function load() {
-        loader.source = "Confluence.qml"
+        loader.source = "Shroomfluence.qml"
     }
 
     Loader {
