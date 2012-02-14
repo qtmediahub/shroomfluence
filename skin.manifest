@@ -1,6 +1,7 @@
 {
     "name": "Shroomfluence",
     "version": "0.8",
+    "qmlVersion": "2",
 
     "resolutions": {
         "720p": {
