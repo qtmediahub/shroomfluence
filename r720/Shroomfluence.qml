@@ -70,11 +70,6 @@ FocusScope {
         show(aboutWindow)
     }
 
-    function showSystemInfoWindow() {
-        var systemInfoWindow = util.createQmlObjectFromFile(themePath + "SystemInfoWindow.qml", { deleteOnClose: true }, confluence)
-        show(systemInfoWindow)
-    }
-
     function setBackground(source) {
         background.setBackground(source)
     }
@@ -284,9 +279,6 @@ FocusScope {
         } else {
             _ticker = dummyItem
         }
-
-        util.createQmlObjectFromFile(themePath + "ScreenSaver.qml", {}, confluence)
-        util.createQmlObjectFromFile(themePath + "SystemScreenSaverControl.qml", {}. confluence)
     }
 
     AVPlayer {
