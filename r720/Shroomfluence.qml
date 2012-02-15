@@ -420,7 +420,7 @@ FocusScope {
     }
 
     FPSItem {
-        visible: runtime.skin.settings.showFPS
+        visible: runtime.settings.fps
     }
 
     Text {
