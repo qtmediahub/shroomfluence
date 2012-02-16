@@ -425,17 +425,6 @@ FocusScope {
     }
 
     FPSItem {
-        id: fpsItem
-        property int fps: -1
-        visible: fps != -1
-        Timer {
-            interval: 1000
-            running: true
-            repeat: true
-            onTriggered: {
-                fpsItem.fps = metrics.swaplogFPS()
-            }
-        }
     }
 
     Text {
