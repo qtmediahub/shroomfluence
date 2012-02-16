@@ -26,6 +26,7 @@ import "confluence.js" as Confluence
 import MediaModel 1.0
 import IpAddressFinder 1.0
 import QtMediaHub.components 2.0
+import Metrics 1.0
 
 FocusScope {
     id: confluence
@@ -419,8 +420,22 @@ FocusScope {
         z: UIConstants.screenZValues.diplomaticImmunity
     }
 
+    Metrics {
+        id: metrics
+    }
+
     FPSItem {
-        visible: runtime.settings.fps
+        id: fpsItem
+        property int fps: -1
+        visible: fps != -1
+        Timer {
+            interval: 1000
+            running: true
+            repeat: true
+            onTriggered: {
+                fpsItem.fps = metrics.swaplogFPS()
+            }
+        }
     }
 
     Text {
