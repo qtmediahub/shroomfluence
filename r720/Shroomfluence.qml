@@ -425,6 +425,10 @@ FocusScope {
     }
 
     FPSItem {
+        id: fpsItem
+    }
+
+    ThreadCountItem {
     }
 
     Text {

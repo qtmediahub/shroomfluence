@@ -3,16 +3,16 @@ import "components/"
 
 Rectangle {
     id: root
-    property int fpsCount
-    color: "black"
+    property int threadCount: -1
+    color: "red"
     z: 1000
     width: childrenRect.width; height: childrenRect.height
-    anchors { top: dateTimeHeader.bottom; right: confluence.right }
-    visible: fpsCount != -1
+    anchors { top: dateTimeHeader.bottom; right: fpsItem.left }
+    visible: threadCount != -1
     ConfluenceText {
         id: fpsText
         animated: false
-        text: "FPS:" + root.fpsCount
+        text: "Threads:" + root.threadCount
         font.pixelSize: 60
     }
     Timer {
@@ -20,7 +20,8 @@ Rectangle {
         running: true
         repeat: true
         onTriggered: {
-            root.fpsCount = metrics.swaplogFPS()
+            root.threadCount = metrics.threadCount()
+            console.log("Thread count is " + root.threadCount)
         }
     }
 }
