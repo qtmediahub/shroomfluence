@@ -419,27 +419,5 @@ FocusScope {
         anchors.rightMargin: 20
         z: UIConstants.screenZValues.diplomaticImmunity
     }
-
-    Metrics {
-        id: metrics
-    }
-
-    FPSItem {
-        id: fpsItem
-    }
-
-    ThreadCountItem {
-    }
-
-    Text {
-        z: 100000
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        text: ipAddressFinder.ipAddresses[0]
-
-        IpAddressFinder {
-            id: ipAddressFinder
-        }
-    }
 }
 
