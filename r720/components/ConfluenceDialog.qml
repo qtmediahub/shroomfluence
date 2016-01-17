@@ -62,7 +62,7 @@ FocusScope {
         root.opened()
     }
 
-    onClose: root.parent.forceActiveFocus()
+    onClosed: root.parent.forceActiveFocus()
 
     states: [
         State {

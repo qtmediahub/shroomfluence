@@ -247,7 +247,6 @@ QMHPlayer {
         }
     }
 
-
     ConfluenceDialog {
         id: videoListDialog
         width: parent.width/1.5
