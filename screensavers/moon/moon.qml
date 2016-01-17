@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.5
 import Qt3D 1.0
 import Qt3D.Shapes 1.0
 import QtMediaHub.components.media 1.0

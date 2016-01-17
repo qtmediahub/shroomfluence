@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import "components/"
 
 Rectangle {
@@ -21,7 +21,6 @@ Rectangle {
         repeat: true
         onTriggered: {
             root.threadCount = metrics.threadCount()
-            console.log("Thread count is " + root.threadCount)
         }
     }
 }

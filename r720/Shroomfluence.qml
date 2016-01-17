@@ -17,7 +17,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.5
 import "components/"
 import "./components/uiconstants.js" as UIConstants
 import "./components/cursor.js" as Cursor
@@ -86,7 +86,7 @@ FocusScope {
                 var panel = util.createQmlObjectFromFile(themePath + "components/Panel.qml", {decorateFrame: true, decorateTitleBar: true}, engine.window, confluence)
                 panel.anchors.centerIn = engine.window
                 var app = util.createQmlObjectFromFile(engine.appUrl, {}, confluence)
-                var item = Qt.createQmlObject("import QtQuick 2.0; Item { }", panel.contentItem)
+                var item = Qt.createQmlObject("import QtQuick 2.5; Item { }", panel.contentItem)
                 item.width = (function() { return engine.window ? engine.window.width - 60 : undefined })
                 item.height = (function() { return engine.window ? engine.window.height - 60 : undefined })
                 app.parent = item

@@ -17,7 +17,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.5
 import "uiconstants.js" as UIConstants
 
 FocusScope {
