@@ -65,10 +65,11 @@ Item {
     }
 
     Component.onCompleted: {
-        if (runtime.skin.settings.splash) {
+        /*if (runtime.skin.settings.splash) {
             splashLoader.source = "ShaderSplashScreen.qml"
         } else {
             confluenceEntry.load()
-        }
+        }*/
+        confluenceEntry.load()
     }
 }
