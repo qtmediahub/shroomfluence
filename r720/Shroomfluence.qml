@@ -141,10 +141,8 @@ FocusScope {
     }
 
     function showModal(item) {
-        mouseGrabber.opacity = 0.9 // FIXME: this should probably become a confluence state
         var currentFocusedItem = runtime.view.focusItem();
         var onClosedHandler = function() {
-            mouseGrabber.opacity = 0;
             if (currentFocusedItem)
                 currentFocusedItem.forceActiveFocus()
             item.closed.disconnect(onClosedHandler)
@@ -361,23 +359,6 @@ FocusScope {
         id: dateTimeHeader
         expanded: true
         showDate: true
-    }
-
-    Rectangle {
-        id: mouseGrabber
-        color: "black"
-        anchors.fill: parent;
-        z: UIConstants.screenZValues.mouseGrabber
-        opacity: 0
-
-        Behavior on opacity {
-            NumberAnimation { }
-        }
-
-        MouseArea {
-            anchors.fill: parent;
-            hoverEnabled: true
-        }
     }
 
     Window {
