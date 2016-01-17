@@ -2,19 +2,19 @@ import QtQuick 2.0
 import QtQuick.Particles 2.0
 
 Rectangle {
-	id: root
+    id: root
     anchors.fill: parent
-//    width: 1920; height: 1080
-//    width: 1368; height: 768
-    color: "black" 
+    //    width: 1920; height: 1080
+    //    width: 1368; height: 768
+    color: "black"
 
-	SequentialAnimation on color {
-		running: false
-		loops: Animation.Infinite
-		ColorAnimation { to: "black"; duration: 300; }
-		ColorAnimation { to: "darkmagenta"; duration: 300; }
-	}
-Item {
+    SequentialAnimation on color {
+        running: false
+        loops: Animation.Infinite
+        ColorAnimation { to: "black"; duration: 300; }
+        ColorAnimation { to: "darkmagenta"; duration: 300; }
+    }
+    Item {
         id: circle
         //anchors.fill: parent
         property real radius: 0
@@ -28,16 +28,16 @@ Item {
             loops: Animation.Infinite
             running: true
             NumberAnimation {
-            duration: 1000
-            from: 1
-            to: 0
-            loops: 8
+                duration: 1000
+                from: 1
+                to: 0
+                loops: 8
             }
             NumberAnimation {
-            duration: 1000
-            from: 0
-            to: 1
-            loops: 8
+                duration: 1000
+                from: 0
+                to: 1
+                loops: 8
             }
 
         }
@@ -56,9 +56,7 @@ Item {
         }
     }
 
-
-
-        ShaderEffectSource {
+    ShaderEffectSource {
         id: src
         anchors.fill: parent
         recursive: true
@@ -71,12 +69,12 @@ Item {
             NumberAnimation { to: 30; duration: 2000; easing.type: Easing.InOutSine }
             NumberAnimation { to: 60; duration: 2000; easing.type: Easing.InOutSine }
         }
-    }	
+    }
 
     Item {
         id: item
         anchors.fill: parent
-	
+
         Rectangle {
             id: trunk
             anchors.horizontalCenter: parent.horizontalCenter
@@ -87,7 +85,7 @@ Item {
             //color: "#111122"
             color: "black"
             radius: 20
-	    smooth: true
+            smooth: true
             
             /*Text {
                 anchors.centerIn: parent
@@ -99,76 +97,73 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 150
-	    source: "/home/eupton/qt-logo.png"
+        source: "/home/eupton/qt-logo.png"
             width: 200
             height: 200
-	*/
-    	ParticleSystem { id: sys1 }
+    */
+            ParticleSystem { id: sys1 }
 
-	ImageParticle {
-        system: sys1
-        source: "particle.png"
-        color: "cyan"
-        alpha: 0
-        SequentialAnimation on color {
-            loops: Animation.Infinite
-            ColorAnimation {
-                from: "cyan"
-                to: "magenta"
-                duration: 1000
+            ImageParticle {
+                system: sys1
+                source: "particle.png"
+                color: "cyan"
+                alpha: 0
+                SequentialAnimation on color {
+                    loops: Animation.Infinite
+                    ColorAnimation {
+                        from: "cyan"
+                        to: "magenta"
+                        duration: 1000
+                    }
+                    ColorAnimation {
+                        from: "magenta"
+                        to: "blue"
+                        duration: 2000
+                    }
+                    ColorAnimation {
+                        from: "blue"
+                        to: "violet"
+                        duration: 2000
+                    }
+                    ColorAnimation {
+                        from: "violet"
+                        to: "cyan"
+                        duration: 2000
+                    }
+                }
+                colorVariation: 0.3
             }
-            ColorAnimation {
-                from: "magenta"
-                to: "blue"
+            Emitter {
+                id: trailsNormal
+                system: sys1
+
+                emitRate: 600
+                lifeSpan: 3000
+
+                y: circle.cy
+                x: circle.cx
+
+                velocity: PointDirection {xVariation: 4; yVariation: 4;}
+                acceleration: PointDirection {xVariation: 10; yVariation: 10;}
+                velocityFromMovement: 8
+
+                size: 12
+                sizeVariation: 4
+            }
+
+            SequentialAnimation on scale {
+                loops: Animation.Infinite
+                NumberAnimation { to: 1; duration: 2000; }
+                NumberAnimation { to: 1.2; duration: 3000; }
+            }
+
+            NumberAnimation on rotation {
+                loops: Animation.Infinite
+                running: false
+                from: 0
+                to: 360
                 duration: 2000
             }
-            ColorAnimation {
-                from: "blue"
-                to: "violet"
-                duration: 2000
-            }
-            ColorAnimation {
-                from: "violet"
-                to: "cyan"
-                duration: 2000
-            }
-        }
-        colorVariation: 0.3
-    }
-    Emitter {
-        id: trailsNormal
-        system: sys1
-
-        emitRate: 600
-        lifeSpan: 3000
-
-
-        y: circle.cy
-        x: circle.cx
-
-        speed: PointDirection {xVariation: 4; yVariation: 4;}
-        acceleration: PointDirection {xVariation: 10; yVariation: 10;}
-        speedFromMovement: 8
-
-        size: 12
-        sizeVariation: 4
-    }
-
-
-	
-	SequentialAnimation on scale {
-            loops: Animation.Infinite
-            NumberAnimation { to: 1; duration: 2000; }
-            NumberAnimation { to: 1.2; duration: 3000; }
-        }
-
-	    NumberAnimation on rotation {
-		loops: Animation.Infinite
-		running: false
-		from: 0
-		to: 360
-		duration: 2000
-	    }
         }
         ShaderEffect {
             anchors.fill: parent
@@ -183,7 +178,7 @@ Item {
             property variant source: src
             //property color color: "green"
             property color color: "black"
-	    fragmentShader: "
+            fragmentShader: "
                 uniform sampler2D source;
                 uniform lowp vec4 color;
                 uniform lowp float qt_Opacity;
@@ -205,12 +200,12 @@ Item {
             property variant source: src
             //property color color: "#ff0000"
             property color color: "black"
-	    SequentialAnimation on color {
-		loops: Animation.Infinite
-		running: false
-		ColorAnimation { to: "black"; duration: 4000 }
-		ColorAnimation { to: "blue"; duration: 3000 }
- 	    }
+            SequentialAnimation on color {
+                loops: Animation.Infinite
+                running: false
+                ColorAnimation { to: "black"; duration: 4000 }
+                ColorAnimation { to: "blue"; duration: 3000 }
+            }
             fragmentShader: "
                 uniform sampler2D source;
                 uniform lowp vec4 color;
