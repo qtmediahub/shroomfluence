@@ -20,7 +20,7 @@ ConfluenceText 1.0 ConfluenceText.qml
 Rating 1.0 Rating.qml
 ImageCrossFader 1.0 ImageCrossFader.qml
 ConfluenceTwoColumnDelegate 1.0 ConfluenceTwoColumnDelegate.qml
-Dialog 1.0 Dialog.qml
+ConfluenceDialog 1.0 ConfluenceDialog.qml
 TreeView 1.0 TreeView.qml
 ContextMenu 1.0 ContextMenu.qml
 Blade 1.0 Blade.qml

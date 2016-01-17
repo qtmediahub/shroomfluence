@@ -21,7 +21,7 @@ import QtQuick 2.0
 import "components/"
 import DirModel 1.0
 
-Dialog {
+ConfluenceDialog {
     id: root
 
     property variant mediaModel

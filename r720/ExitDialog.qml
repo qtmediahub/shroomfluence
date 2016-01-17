@@ -20,7 +20,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 import QtQuick 2.0
 import "components/"
 
-Dialog {
+ConfluenceDialog {
     id: root
 
     title: qsTr("Exit")

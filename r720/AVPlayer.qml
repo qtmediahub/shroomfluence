@@ -248,7 +248,7 @@ QMHPlayer {
     }
 
 
-    Dialog {
+    ConfluenceDialog {
         id: videoListDialog
         width: parent.width/1.5
         height: parent.height/1.5
@@ -273,7 +273,7 @@ QMHPlayer {
         }
     }
 
-    Dialog {
+    ConfluenceDialog {
         id: musicListDialog
         width: parent.width/1.5
         height: parent.height/1.5
@@ -298,7 +298,7 @@ QMHPlayer {
         }
     }
 
-    Dialog {
+    ConfluenceDialog {
         id: playListDialog
         width: parent.width/1.5
         height: parent.height/1.5
@@ -317,7 +317,7 @@ QMHPlayer {
         }
     }
 
-    Dialog {
+    ConfluenceDialog {
         id: targetsListDialog
         width: parent.width/1.5
         height: parent.height/1.5
