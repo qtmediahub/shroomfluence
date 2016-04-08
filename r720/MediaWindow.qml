@@ -47,7 +47,7 @@ Window {
     }
 
     function setCurrentView(viewType) {
-        var currentIndex = typeof view != "undefined" ? view.currentIndex : 0
+        var currentIndex = view ? view.currentIndex : 0
         var dotDotPosition = MediaModel.End
         if (viewType == qsTr("BIG GRID") || viewType == qsTr("GRID")) {
             viewLoader.changeView(thumbnailView)
